@@ -1,0 +1,88 @@
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-white);
+  border-radius: 999px;
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  -ms-border-radius: 999px;
+  -o-border-radius: 999px;
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  z-index: 1;
+  opacity: 0;
+  transition: 300ms all;
+  -webkit-transition: 300ms all;
+  -moz-transition: 300ms all;
+  -ms-transition: 300ms all;
+  -o-transition: 300ms all;
+}
+
+.nav-item:hover ~ .dot {
+  opacity: 1;
+}
+
+.nav-item:nth-child(1):hover ~ .dot {
+  left: 46px;
+}
+
+.nav-item:nth-child(2):hover ~ .dot {
+  left: 142px;
+}
+
+.nav-item:nth-child(3):hover ~ .dot {
+  left: 235px;
+}
+
+.nav-item:nth-child(4):hover ~ .dot {
+  left: 335px;
+}
+
+.nav-item:nth-child(5):hover ~ .dot {
+  left: 435px;
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-white);
+  border-radius: 999px;
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  -ms-border-radius: 999px;
+  -o-border-radius: 999px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: 250ms all;
+  -webkit-transition: 250ms all;
+  -moz-transition: 250ms all;
+  -ms-transition: 250ms all;
+  -o-transition: 250ms all;
+}
+
+.nav-item:hover ~ .dot {
+  opacity: 1;
+}
+
+.nav-item:nth-child(1):hover ~ .dot {
+  left: 46px;
+}
+
+.nav-item:nth-child(2):hover ~ .dot {
+  left: 136px;
+}
+
+.nav-item:nth-child(3):hover ~ .dot {
+  left: 232px;
+}
+
+.nav-item:nth-child(4):hover ~ .dot {
+  left: 332px;
+}
+
+.nav-item:nth-child(5):hover ~ .dot {
+  left: 430px;
+}

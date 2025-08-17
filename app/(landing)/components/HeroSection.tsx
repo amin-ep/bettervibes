@@ -1,0 +1,106 @@
+import Container from "@/app/components/ui/Container";
+import styles from "./HeroSection.module.css";
+import Image from "next/image";
+import clsx from "clsx";
+import Link from "next/link";
+
+function HeroSection() {
+  return (
+    <section className="py-4 md:py-8">
+      <Container>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
+          <article className="flex flex-col gap-2 sm:gap-4 md:gap-6">
+            <h1 className="w-full text-center text-5xl sm:text-6xl md:text-left md:text-7xl xl:text-8xl">
+              Improve Your Music Taste
+            </h1>
+            <p className="w-full text-center text-sm md:text-left md:text-base">
+              Discover new artists and genres with our curated playlists, all
+              available at no cost to you.
+            </p>
+            <div
+              className={clsx(
+                styles["circle-col"],
+                "relative mx-auto flex w-60 items-center justify-start overflow-hidden md:w-full",
+              )}
+            >
+              <div className="bg-soft-lavender aspect-square w-30 overflow-hidden rounded-full">
+                <Image
+                  src="/images/girl-listening-music-1.png"
+                  alt="girl is listening to music"
+                  width={70}
+                  height={70}
+                  className="aspect-square w-full"
+                  unoptimized
+                />
+              </div>
+              <div
+                className={clsx(
+                  "bg-deep-violet absolute left-30 aspect-square w-30",
+                  styles.semicircle,
+                )}
+              ></div>
+              <div
+                className={clsx(
+                  "bg-pinkish absolute left-43 z-1 aspect-square w-30",
+                  styles.semicircle,
+                )}
+              ></div>
+            </div>
+          </article>
+
+          <section className="flex flex-col gap-2 sm:gap-4 md:gap-6">
+            <div className="flex items-center justify-center">
+              <button className="hover:text-background max-w-50 flex-1 cursor-pointer rounded-full border border-white p-2 px-4 hover:-translate-y-[2px] hover:bg-white active:translate-y-[1px] md:p-3 md:px-6">
+                Explore
+              </button>
+              <button className="hover:text-background max-w-50 flex-1 cursor-pointer rounded-full border border-white p-2 px-4 hover:-translate-y-[2px] hover:bg-white active:translate-y-[1px] md:p-3 md:px-6">
+                Play
+              </button>
+            </div>
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4 md:gap-6">
+              <div
+                className={clsx(
+                  styles["join-col-image-wrapper"],
+                  "from-hotpink to-coral w-full overflow-y-visible bg-gradient-to-r",
+                )}
+              >
+                <Image
+                  src="/images/girl-listening-music-2.png"
+                  alt="girl is listening to music"
+                  width={70}
+                  height={210}
+                  unoptimized
+                  className="z-1 w-full"
+                />
+              </div>
+              <div className="flex items-center justify-center">
+                <Link
+                  href="/signup"
+                  className={clsx(
+                    "relative flex h-50 w-50 flex-col items-center justify-center rounded-md border border-neutral-500 p-2 py-6 hover:border-neutral-400 hover:bg-white/10 md:h-60 md:w-60",
+                    styles["join-link"],
+                  )}
+                >
+                  <Image
+                    src="/images/headphone.png"
+                    alt="headphone"
+                    width={100}
+                    height={100}
+                    className="w-40 md:w-50"
+                    unoptimized
+                  />
+                  <span className="font-playfair text-xl md:text-2xl">
+                    Join For Free
+                  </span>
+                  <i className="icon-[mdi--arrow-right] absolute top-2 right-2 text-2xl md:text-3xl"></i>
+                </Link>
+              </div>
+            </div>
+          </section>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+export default HeroSection;

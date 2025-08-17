@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${playfair.variable} ${poppins.variable}`}>
-        <div>{children}</div>
+        {children}
       </body>
     </html>
   );
