@@ -4,20 +4,37 @@ import React from "react";
 type Props = {
   children: React.ReactNode;
   className?: string;
+  tooltipOption?: {
+    enabled: boolean;
+    title: string;
+  };
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-function HeaderIconifyButton({ children, className, ...rest }: Props) {
+function HeaderIconifyButton({
+  children,
+  className,
+  tooltipOption,
+  ...rest
+}: Props) {
   return (
-    <button
-      type="button"
+    <div
       className={clsx(
-        "flex aspect-square cursor-pointer items-center justify-center rounded-md p-1 text-white hover:scale-[1.05] hover:bg-white/10",
-        className,
+        tooltipOption?.enabled &&
+          "tooltip tooltip-bottom tooltip-primary rounded-xl",
       )}
-      {...rest}
+      data-tip={tooltipOption?.title}
     >
-      {children}
-    </button>
+      <button
+        type="button"
+        className={clsx(
+          "flex aspect-square cursor-pointer items-center justify-center rounded-md p-1 text-white hover:scale-[1.05] hover:bg-white/10",
+          className,
+        )}
+        {...rest}
+      >
+        {children}
+      </button>
+    </div>
   );
 }
 

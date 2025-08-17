@@ -4,7 +4,12 @@ import MobileNavbar from "./MobileNavbar";
 function HeaderActions() {
   return (
     <div className="flex items-center justify-end">
-      <HeaderIconifyButton>
+      <HeaderIconifyButton
+        tooltipOption={{
+          enabled: true,
+          title: "Search",
+        }}
+      >
         <i className="icon-[mdi--magnify] text-2xl"></i>
       </HeaderIconifyButton>
       <MobileNavbar />

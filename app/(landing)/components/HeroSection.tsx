@@ -35,13 +35,13 @@ function HeroSection() {
               </div>
               <div
                 className={clsx(
-                  "bg-deep-violet absolute left-30 aspect-square w-30",
+                  "bg-accent absolute left-30 aspect-square w-30",
                   styles.semicircle,
                 )}
               ></div>
               <div
                 className={clsx(
-                  "bg-pinkish absolute left-43 z-1 aspect-square w-30",
+                  "bg-secondary absolute left-43 z-1 aspect-square w-30",
                   styles.semicircle,
                 )}
               ></div>
@@ -61,7 +61,7 @@ function HeroSection() {
               <div
                 className={clsx(
                   styles["join-col-image-wrapper"],
-                  "from-hotpink to-coral w-full overflow-y-visible bg-gradient-to-r",
+                  "from-primary to-error-content w-full overflow-y-visible bg-gradient-to-r",
                 )}
               >
                 <Image

@@ -2,28 +2,41 @@
 
 @plugin "@iconify/tailwind4";
 
+@plugin "daisyui" {
+  themes: light;
+}
+@plugin "daisyui/theme" {
+  default: true;
+  --color-primary: #e8005f;
+  --color-secondary: #d87deb;
+  --color-accent: #9200e3;
+  --color-accent-content: #bd9cff;
+  --color-error: #ff4d4f;
+  --color-error-content: #ff807c;
+  --color-info: #947cee;
+}
 :root {
   --background: #1f1936;
   --foreground: #ffffff;
-  --soft-lavender: #947cee;
-  --pinkish: #d87deb;
-  --light-violet: #bd9cff;
-  --deep-violet: #9200e3;
-  --hotpink: #e8005f;
-  --coral: #ff807c;
+  --info: #947cee; /*soft-lavender*/
+  --secondary: #d87deb; /* pinkish */
+  --accent-content: #bd9cff; /* light violet */
+  --accent: #9200e3; /* deep-violet */
+  --primary: #e8005f; /* hotpink */
+  --error-content: #ff807c; /* coral */
   --error: #ff4d4f;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-soft-lavender: var(--soft-lavender);
-  --color-pinkish: var(--pinkish);
-  --color-light-violet: var(--light-violet);
-  --color-deep-violet: var(--deep-violet);
-  --color-hotpink: var(--hotpink);
-  --color-coral: var(--coral);
-  --color-error: var(--error);
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-accent-content: var(--color-accent-content);
+  --color-error: var(--color-error);
+  --color-error-content: var(--color-error-content);
+  --color-info: var(--color-info);
 
   --font-poppins: var(--font-poppins);
   --font-playfair: var(--font-playfair);
@@ -50,4 +63,21 @@ h4,
 h5,
 h6 {
   font-family: var(--font-playfair);
+}
+
+.tooltip:before {
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+.dropdown-content {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
 }
