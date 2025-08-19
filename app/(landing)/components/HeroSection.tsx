@@ -75,7 +75,7 @@ function HeroSection() {
               </div>
               <div className="flex items-center justify-center">
                 <Link
-                  href="/signup"
+                  href="/auth"
                   className={clsx(
                     "relative flex h-50 w-50 flex-col items-center justify-center rounded-md border border-neutral-500 p-2 py-6 hover:border-neutral-400 hover:bg-white/10 md:h-60 md:w-60",
                     styles["join-link"],

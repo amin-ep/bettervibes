@@ -1,18 +1,20 @@
-import HeaderIconifyButton from "./HeaderIconifyButton";
+import AuthLinks from "./AuthLinks";
+import HeaderIconifyLinkButton from "./HeaderIconifyButton";
 import MobileNavbar from "./MobileNavbar";
 
 function HeaderActions() {
   return (
-    <div className="flex items-center justify-end">
-      <HeaderIconifyButton
+    <div className="flex w-full items-center justify-end gap-2">
+      <HeaderIconifyLinkButton
         tooltipOption={{
           enabled: true,
           title: "Search",
         }}
       >
         <i className="icon-[mdi--magnify] text-2xl"></i>
-      </HeaderIconifyButton>
+      </HeaderIconifyLinkButton>
       <MobileNavbar />
+      <AuthLinks />
     </div>
   );
 }

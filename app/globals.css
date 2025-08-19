@@ -81,3 +81,36 @@ h6 {
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
 }
+
+.btn {
+  outline: none;
+  border: none;
+  border-radius: 99px;
+  -webkit-border-radius: 99px;
+  -moz-border-radius: 99px;
+  -ms-border-radius: 99px;
+  -o-border-radius: 99px;
+  padding-inline: 24px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  -webkit-transform: translateY(-2px);
+  -moz-transform: translateY(-2px);
+  -ms-transform: translateY(-2px);
+  -o-transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  -webkit-transform: translateY(1px);
+  -moz-transform: translateY(1px);
+  -ms-transform: translateY(1px);
+  -o-transform: translateY(1px);
+}
+
+@layer {
+  .input {
+    @apply w-full rounded-sm border-2 border-stone-200 bg-stone-200 text-xs font-semibold text-stone-950 focus:border-stone-800 md:text-sm;
+  }
+}

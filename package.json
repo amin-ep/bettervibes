@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.1",
     "@iconify/json": "^2.2.374",
     "@iconify/tailwind4": "^1.0.6",
     "axios": "^1.11.0",

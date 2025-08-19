@@ -1,0 +1,192 @@
+"use client";
+
+import clsx from "clsx";
+import Image from "next/image";
+import React, { ReactNode } from "react";
+import Input from "./Input";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import styles from "./FormLayout.module.css";
+
+// Types
+type FormProps = {
+  children: React.ReactNode;
+} & React.FormHTMLAttributes<HTMLFormElement>;
+
+type LogoProps = {
+  containerClassName?: string;
+  position?: "center" | "right" | "left";
+  imageVariation?: "horizontal" | "vertical" | "iconic";
+  color?: "white" | "primary";
+};
+
+type ControlProps = {
+  errorMessage?: string;
+  containerClassName?: string;
+  children: React.ReactNode;
+  labelTitle?: string;
+  errorMessageColor?: "white" | "error";
+} & React.LabelHTMLAttributes<HTMLLabelElement>;
+
+type SubmitProps = {
+  children: React.ReactNode;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+type LinkDescriptionProps = {
+  children: React.ReactNode;
+  href: string;
+  message: string;
+} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+
+// Components
+function FormLayout(props: FormProps) {
+  const { className, ...rest } = props;
+  return (
+    <form
+      className={clsx(
+        "mx-auto flex max-w-96 flex-col items-center gap-2 px-2 md:gap-3",
+        className,
+      )}
+      {...rest}
+    >
+      {props.children}
+    </form>
+  );
+}
+
+function Header(
+  props: { children: ReactNode } & React.HtmlHTMLAttributes<HTMLElement>,
+) {
+  const { className, ...rest } = props;
+  return (
+    <header {...rest} className={clsx("mb-2 md:mb-4 lg:mb-6", className)}>
+      {props.children}
+    </header>
+  );
+}
+function Heading(
+  props: { children: ReactNode } & React.HtmlHTMLAttributes<HTMLHeadingElement>,
+) {
+  const { className, ...rest } = props;
+  return (
+    <h1
+      className={clsx("text-3xl text-stone-900 lg:text-4xl", className)}
+      {...rest}
+    >
+      {props.children}
+    </h1>
+  );
+}
+
+function Logo({
+  containerClassName,
+  position = "center",
+  imageVariation = "iconic",
+  color = "primary",
+}: LogoProps) {
+  return (
+    <div
+      className={clsx(
+        "mb-3 flex items-center md:mb-6",
+        containerClassName,
+        position == "center"
+          ? "justify-center"
+          : position == "right"
+            ? "justify-end"
+            : "justify-start",
+      )}
+    >
+      <Image
+        alt="Vibe"
+        src={`/images/logo-${imageVariation}-${color}.png`}
+        width={70}
+        height={70}
+      />
+    </div>
+  );
+}
+
+function Control(props: ControlProps) {
+  const {
+    children,
+    containerClassName,
+    errorMessageColor = "error",
+    labelTitle,
+    errorMessage,
+    ...rest
+  } = props;
+
+  return (
+    <motion.div
+      className={clsx(
+        "flex w-full flex-col gap-1 md:gap-1.5",
+        containerClassName,
+      )}
+    >
+      {labelTitle && (
+        <label
+          htmlFor={props.htmlFor}
+          className="label text-xs font-bold text-stone-950 md:text-sm"
+          {...rest}
+        >
+          {labelTitle}
+        </label>
+      )}
+      {children}
+      {errorMessage && (
+        <p
+          className={clsx(
+            "flex items-center gap-1.5 text-xs md:text-sm",
+            `text-${errorMessageColor}`,
+          )}
+        >
+          <i className="icon-[hugeicons--information-circle]"></i>
+          <span>{errorMessage}</span>
+        </p>
+      )}
+    </motion.div>
+  );
+}
+
+function Submit({ children, className, ...props }: SubmitProps) {
+  return (
+    <button
+      type="submit"
+      {...props}
+      className={clsx("btn btn-primary mt-3 md:mt-6", className)}
+    >
+      {children}
+    </button>
+  );
+}
+
+function LinkDescription({
+  href,
+  children,
+  className,
+  message,
+  ...rest
+}: LinkDescriptionProps) {
+  return (
+    <div className="my-1 flex flex-wrap items-center justify-start text-sm text-white">
+      {message}{" "}
+      <Link
+        href={href}
+        {...rest}
+        className={clsx("hover:text-primary mb-0.5 underline", className)}
+      >
+        {children}
+      </Link>
+    </div>
+  );
+}
+
+FormLayout.Logo = Logo;
+FormLayout.Control = Control;
+FormLayout.Input = Input;
+FormLayout.Submit = Submit;
+FormLayout.LinkDescription = LinkDescription;
+FormLayout.Header = Header;
+FormLayout.Heading = Heading;
+
+export default FormLayout;
