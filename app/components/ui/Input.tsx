@@ -19,7 +19,7 @@ function Input(
         <i
           className={clsx(
             iconClass,
-            "text-primary right absolute top-1/6 left-2 z-2 text-2xl font-bold",
+            "text-primary right absolute top-1/6 left-2 z-2 text-2xl font-bold md:top-[20%]",
           )}
         ></i>
       )}
