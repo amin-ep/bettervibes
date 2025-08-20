@@ -1,4 +1,4 @@
-import Container from "@/app/components/ui/Container";
+import Container from "@/components/ui/Container";
 import styles from "./HeroSection.module.css";
 import Image from "next/image";
 import clsx from "clsx";

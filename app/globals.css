@@ -93,6 +93,10 @@ h6 {
   padding-inline: 24px;
 }
 
+.btn:disabled {
+  opacity: 0.5;
+}
+
 .btn:hover {
   transform: translateY(-2px);
   -webkit-transform: translateY(-2px);

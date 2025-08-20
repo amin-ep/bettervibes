@@ -1,23 +1,22 @@
 "use client";
 
-import FormLayout from "@/app/components/ui/FormLayout";
-import Input from "@/app/components/ui/Input";
-import { useForm } from "react-hook-form";
+import FormLayout from "@/components/ui/FormLayout";
+import Input from "@/components/ui/Input";
+import { signupSchema } from "@/lib/schemas/signupSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signupSchema } from "@/app/lib/schemas/signupSchema";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 export default function SignupForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, defaultValues },
+    formState: { errors },
   } = useForm({
     resolver: zodResolver(signupSchema),
   });
 
-  const onSubmit = (data: typeof defaultValues) => {
-    console.log(data);
-  };
+  const onSubmit = (data: z.infer<typeof signupSchema>) => {};
 
   return (
     <FormLayout onSubmit={handleSubmit(onSubmit)}>

@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Toast from "@/components/Toast";
 
 const poppins = localFont({
-  src: "/assets/fonts/Poppins-Light.ttf",
+  src: "./assets/fonts/Poppins-Light.ttf",
   variable: "--font-poppins",
   weight: "400",
 });
 
 const playfair = localFont({
-  src: "/assets/fonts/Playfair_9pt-Black.ttf",
+  src: "./assets/fonts/Playfair_9pt-Black.ttf",
   variable: "--font-playfair",
 });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${playfair.variable} ${poppins.variable}`}>
+        <Toast />
         {children}
       </body>
     </html>

@@ -1,23 +1,29 @@
 "use client";
 
-import FormLayout from "@/app/components/ui/FormLayout";
-import Input from "@/app/components/ui/Input";
-import { loginSchema } from "@/app/lib/schemas/loginSchema";
+import FormLayout from "@/components/ui/FormLayout";
+import Input from "@/components/ui/Input";
+import { login } from "@/actions/auth-actions";
+import { loginSchema } from "@/lib/schemas/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 function LoginForm() {
+  const [isPending, startTransition] = useTransition();
   const {
     register,
-    formState: { errors, defaultValues },
+    formState: { errors },
     handleSubmit,
   } = useForm({
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: typeof defaultValues) => {
-    console.log(data);
+  const onSubmit = (data: z.infer<typeof loginSchema>) => {
+    startTransition(async () => {
+      await login(data);
+    });
   };
   return (
     <FormLayout
@@ -59,7 +65,10 @@ function LoginForm() {
         >
           Forget Password
         </Link>
-        <FormLayout.Submit className="text-primary bg-white">
+        <FormLayout.Submit
+          disabled={isPending}
+          className="text-primary bg-white"
+        >
           Log In
         </FormLayout.Submit>
       </div>
