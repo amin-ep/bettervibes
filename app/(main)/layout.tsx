@@ -1,21 +1,9 @@
-import Header from "../components/header/Header";
-import HeaderActions from "../components/header/HeaderActions";
-import Navbar from "../components/header/Navbar";
-import LogoLink from "../components/ui/LogoLink";
+import MainLayout from "../components/layouts/MainLayout";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <>
-      <Header>
-        <LogoLink variation="horizontal" />
-        <Navbar />
-        <HeaderActions />
-      </Header>
-      <main>{children}</main>
-    </>
-  );
+  return <MainLayout>{children}</MainLayout>;
 }
