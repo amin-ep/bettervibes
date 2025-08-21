@@ -9,6 +9,8 @@ import Link from "next/link";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 function LoginForm() {
   const [isPending, startTransition] = useTransition();
@@ -20,9 +22,16 @@ function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
+  const router = useRouter();
+
   const onSubmit = (data: z.infer<typeof loginSchema>) => {
     startTransition(async () => {
-      await login(data);
+      const res = await login(data);
+      if (res?.status == "fail") {
+        toast.error(res.message);
+      } else {
+        router.push("/");
+      }
     });
   };
   return (

@@ -25,6 +25,10 @@
   --primary: #e8005f; /* hotpink */
   --error-content: #ff807c; /* coral */
   --error: #ff4d4f;
+  --color-success: #28c76f;
+  --color-success-content: #d2f5e3;
+  --color-warning: #ff9f43;
+  --color-warning-content: #fff4e1;
 }
 
 @theme inline {

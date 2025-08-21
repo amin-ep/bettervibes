@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const axiosClient = axios.create({
+const api = axios.create({
   baseURL: process.env.NODE_PUBLIC_API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
@@ -8,4 +8,4 @@ const axiosClient = axios.create({
   withCredentials: true,
 });
 
-export default axiosClient;
+export default api;
