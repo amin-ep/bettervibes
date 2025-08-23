@@ -1,22 +1,36 @@
 "use client";
 
+import { signup } from "@/actions/auth-actions";
 import FormLayout from "@/components/ui/FormLayout";
 import Input from "@/components/ui/Input";
 import { signupSchema } from "@/lib/schemas/signupSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { z } from "zod";
 
 export default function SignupForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(signupSchema),
   });
 
-  const onSubmit = (data: z.infer<typeof signupSchema>) => {};
+  const router = useRouter();
+
+  const onSubmit = async (data: z.infer<typeof signupSchema>) => {
+    const res = await signup(data);
+
+    if (res?.status === "success") {
+      toast.success(res.message);
+      router.push("/verify");
+    } else {
+      toast.error(res?.message);
+    }
+  };
 
   return (
     <FormLayout onSubmit={handleSubmit(onSubmit)}>
@@ -66,7 +80,10 @@ export default function SignupForm() {
           placeholder="Password"
         />
       </FormLayout.Control>
-      <FormLayout.Control errorMessage={errors.passwordConfirm?.message}>
+      <FormLayout.Control
+        errorMessageColor="error"
+        errorMessage={errors.passwordConfirm?.message}
+      >
         <Input
           {...register("passwordConfirm")}
           iconClass="icon-[hugeicons--password-validation]"
@@ -74,7 +91,7 @@ export default function SignupForm() {
           placeholder="Confirm Password"
         />
       </FormLayout.Control>
-      <FormLayout.Submit>Sign Up</FormLayout.Submit>
+      <FormLayout.Submit disabled={isSubmitting}>Sign Up</FormLayout.Submit>
     </FormLayout>
   );
 }

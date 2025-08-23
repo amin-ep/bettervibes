@@ -1,8 +1,8 @@
 type User = {
   _id: string;
   imageUrl?: string;
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   email: string;
   username: string;
   role: "admin" | "owner" | "user";

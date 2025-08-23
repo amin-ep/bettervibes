@@ -1,9 +1,13 @@
 "use server";
 
-import api from "@/lib/api";
+import api, { onError } from "@/lib/api";
 import { AUTH_TOKEN_EXPIRES } from "@/lib/constants";
-import { AxiosError, AxiosResponse } from "axios";
+import { loginSchema } from "@/lib/schemas/loginSchema";
+import { signupSchema } from "@/lib/schemas/signupSchema";
+import { verifyEmailSchema } from "@/lib/schemas/verifyEmailSchema";
+import { AxiosResponse } from "axios";
 import { cookies } from "next/headers";
+import z from "zod";
 
 type LoginResponse = {
   status: string;
@@ -13,14 +17,18 @@ type LoginResponse = {
   token: string;
 };
 
-export async function login(data: { email: string; password: string }) {
+type SignupResponse = {
+  status: string;
+  message: string;
+};
+
+export async function login(data: z.infer<typeof loginSchema>) {
   try {
     const res: AxiosResponse<LoginResponse> = await api.post(
       "/auth/login",
       data,
     );
     if (res?.status == 200) {
-      console.log(res.data.token);
       (await cookies()).set({
         name: process.env.NODE_PUBLIC_JWT_SECRET_KEY as string,
         value: res?.data?.token,
@@ -28,14 +36,57 @@ export async function login(data: { email: string; password: string }) {
       });
       return {
         status: "success",
-        message: "Welcome back",
+        message: `Welcome ${res.data.data.user.firstName || res.data.data.user.username}`,
       };
     }
   } catch (err) {
-    const error = err as AxiosError<ErrorResponse>;
-    return {
-      status: "fail",
-      message: error.response?.data.message || "Something went wrong",
-    };
+    onError(err);
+  }
+}
+
+export async function signup(data: Partial<z.infer<typeof signupSchema>>) {
+  try {
+    delete data.passwordConfirm;
+    const res: AxiosResponse<SignupResponse> = await api.post(
+      "/auth/register",
+      data,
+    );
+    const signupExpires = Date.now() + 0.5 * 60 * 60 * 1000;
+    if (res.status == 201) {
+      (await cookies()).set(
+        process.env.SIGNUP_EMAIL as string,
+        data.email as string,
+        {
+          expires: signupExpires,
+        },
+      );
+      return {
+        status: "success",
+        message: res.data.message,
+      };
+    }
+  } catch (err) {
+    return onError(err);
+  }
+}
+
+export async function verifyEmail(data: z.infer<typeof verifyEmailSchema>) {
+  try {
+    const signupEmail = (await cookies()).get(
+      process.env.SIGNUP_EMAIL as string,
+    )?.value;
+
+    const verificationData = { ...data, email: signupEmail };
+    const res = await api.post("/auth/verify", verificationData);
+
+    if (res.status == 200) {
+      (await cookies()).delete(process.env.SIGNUP_EMAIL as string);
+      return {
+        status: "success",
+        message: "Hope to have better vibes here :)",
+      };
+    }
+  } catch (err) {
+    return onError(err);
   }
 }

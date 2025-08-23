@@ -13,10 +13,10 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 function LoginForm() {
-  const [isPending, startTransition] = useTransition();
+  // const [isPending, startTransition] = useTransition();
   const {
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     handleSubmit,
   } = useForm({
     resolver: zodResolver(loginSchema),
@@ -24,15 +24,15 @@ function LoginForm() {
 
   const router = useRouter();
 
-  const onSubmit = (data: z.infer<typeof loginSchema>) => {
-    startTransition(async () => {
-      const res = await login(data);
-      if (res?.status == "fail") {
-        toast.error(res.message);
-      } else {
-        router.push("/");
-      }
-    });
+  const onSubmit = async (data: z.infer<typeof loginSchema>) => {
+    // startTransition(async () => {
+    const res = await login(data);
+    if (res?.status == "fail") {
+      toast.error(res.message);
+    } else {
+      router.push("/");
+    }
+    // });
   };
   return (
     <FormLayout
@@ -75,7 +75,7 @@ function LoginForm() {
           Forget Password
         </Link>
         <FormLayout.Submit
-          disabled={isPending}
+          disabled={isSubmitting}
           className="text-primary bg-white"
         >
           Log In
