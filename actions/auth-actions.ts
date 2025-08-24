@@ -30,7 +30,7 @@ export async function login(data: z.infer<typeof loginSchema>) {
     );
     if (res?.status == 200) {
       (await cookies()).set({
-        name: process.env.NODE_PUBLIC_JWT_SECRET_KEY as string,
+        name: process.env.NEXT_PUBLIC_JWT_SECRET_KEY as string,
         value: res?.data?.token,
         expires: AUTH_TOKEN_EXPIRES,
       });
@@ -54,7 +54,7 @@ export async function signup(data: Partial<z.infer<typeof signupSchema>>) {
     const signupExpires = Date.now() + 0.5 * 60 * 60 * 1000;
     if (res.status == 201) {
       (await cookies()).set(
-        process.env.SIGNUP_EMAIL as string,
+        process.env.NEXT_PUBLIC_SIGNUP_EMAIL as string,
         data.email as string,
         {
           expires: signupExpires,
@@ -73,14 +73,14 @@ export async function signup(data: Partial<z.infer<typeof signupSchema>>) {
 export async function verifyEmail(data: z.infer<typeof verifyEmailSchema>) {
   try {
     const signupEmail = (await cookies()).get(
-      process.env.SIGNUP_EMAIL as string,
+      process.env.NEXT_PUBLIC_SIGNUP_EMAIL as string,
     )?.value;
 
     const verificationData = { ...data, email: signupEmail };
     const res = await api.post("/auth/verify", verificationData);
 
     if (res.status == 200) {
-      (await cookies()).delete(process.env.SIGNUP_EMAIL as string);
+      (await cookies()).delete(process.env.NEXT_PUBLIC_SIGNUP_EMAIL as string);
       return {
         status: "success",
         message: "Hope to have better vibes here :)",
