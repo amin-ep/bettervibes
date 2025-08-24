@@ -31,16 +31,17 @@ export default async function UserProfileLink() {
     redirect("/auth");
   }
 
+  const userImageSrc = currentUser?.imageUrl
+    ? `${process.env.NEXT_PUBLIC_FILE_BASE_URL}/${currentUser?.imageUrl}`
+    : null;
+
   return (
-    <Link
-      href="/profile"
-      className="relative flex items-center justify-between gap-2 overflow-hidden rounded-full border border-stone-200"
-    >
-      <span>
-        {currentUser?.imageUrl ? (
+    <div className="dropdown dropdown-hover dropdown-end dropdown-bottom flex items-center justify-between gap-2 rounded-full border border-stone-200">
+      <span role="button">
+        {userImageSrc ? (
           <Image
-            src={`${process.env.NEXT_PUBLIC_FILE_BASE_URL}/${currentUser.imageUrl}`}
-            alt={currentUser.username}
+            src={userImageSrc}
+            alt={currentUser?.username as string}
             width={40}
             height={40}
             className="aspect-square w-10 rounded-full object-cover"
@@ -51,6 +52,37 @@ export default async function UserProfileLink() {
           </span>
         )}
       </span>
-    </Link>
+
+      <div className="dropdown-content flex min-w-80 flex-col justify-between rounded-xl bg-white p-3 text-stone-900 shadow-lg md:p-5">
+        <div className="flex flex-col items-center justify-center gap-2">
+          <Image
+            src={userImageSrc ?? "/images/user-avatar.gif"}
+            width={70}
+            alt={currentUser?.username as string}
+            height={70}
+            className="aspect-square rounded-full object-cover"
+            unoptimized
+          />
+          <h2 className="!font-poppins text-xl font-bold">
+            {currentUser?.username}
+          </h2>
+        </div>
+        <menu className="menu w-full p-0">
+          <li className="">
+            <Link
+              href="/account"
+              className="hover:text-primary px-0 py-4 hover:pl-1"
+            >
+              Setting
+            </Link>
+          </li>
+          <li className="border-t border-t-stone-300">
+            <button className="hover:text-primary px-0 py-4 hover:pl-1">
+              Sign Out
+            </button>
+          </li>
+        </menu>
+      </div>
+    </div>
   );
 }
