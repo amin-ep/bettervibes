@@ -50,9 +50,6 @@ function VerificationForm() {
     }
   }, [router]);
 
-  useEffect(() => {
-    console.log(time);
-  }, [time]);
   return (
     <FormLayout onSubmit={handleSubmit(onSubmit)}>
       <FormLayout.Header>
