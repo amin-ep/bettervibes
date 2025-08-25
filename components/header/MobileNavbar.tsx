@@ -7,8 +7,8 @@ export default function MobileNavbar() {
     { iconClass: "icon-[mdi-light--home]", title: "Home", href: "/" },
     {
       iconClass: "icon-[mdi-light--music]",
-      title: "Tracks",
-      href: "/tracks",
+      title: "Musics",
+      href: "/musics",
     },
     {
       iconClass: "icon-[mdi--user]",

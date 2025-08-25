@@ -10,8 +10,8 @@ function Navbar() {
         <NavLink className={styles["nav-item"]} href="/">
           Home
         </NavLink>
-        <NavLink className={styles["nav-item"]} href="/tracks">
-          Tracks
+        <NavLink className={styles["nav-item"]} href="/musics">
+          Musics
         </NavLink>
         <NavLink className={styles["nav-item"]} href="/albums">
           Albums
