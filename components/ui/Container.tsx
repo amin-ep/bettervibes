@@ -2,6 +2,7 @@ import clsx from "clsx";
 
 type Props = {
   children: React.ReactNode;
+  size: "large" | "small";
 } & React.HTMLAttributes<HTMLDivElement>;
 
 function Container({ children, className, ...rest }: Props) {
