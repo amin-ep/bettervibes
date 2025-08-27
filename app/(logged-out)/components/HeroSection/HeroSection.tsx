@@ -1,13 +1,12 @@
-import Container from "@/components/ui/Container";
-import styles from "./HeroSection.module.css";
-import Image from "next/image";
 import clsx from "clsx";
+import Image from "next/image";
 import Link from "next/link";
+import styles from "./HeroSection.module.css";
 
 function HeroSection() {
   return (
-    <section className="py-4 md:py-8">
-      <Container>
+    <section className="flex min-h-screen items-center py-4 md:py-8">
+      <div className="mx-auto w-312 max-w-full px-2">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
           <article className="flex flex-col gap-2 sm:gap-4 md:gap-6">
             <h1 className="w-full text-center text-5xl sm:text-6xl md:text-left md:text-7xl xl:text-8xl">
@@ -98,7 +97,7 @@ function HeroSection() {
             </div>
           </section>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

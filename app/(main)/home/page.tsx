@@ -4,7 +4,7 @@ import MusicCarouselCard from "@/components/ui/MusicCarouselCard/MusicCarouselCa
 import { getAllMusics } from "@/lib/api/musicApi";
 import { musicsGenres } from "@/lib/constants";
 
-export default async function MusicsPage() {
+export default async function HomePage() {
   const musics = await getAllMusics();
 
   return (

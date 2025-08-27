@@ -6,7 +6,9 @@ import { loginSchema } from "@/lib/schemas/loginSchema";
 import { signupSchema } from "@/lib/schemas/signupSchema";
 import { verifyEmailSchema } from "@/lib/schemas/verifyEmailSchema";
 import { AxiosResponse } from "axios";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import z from "zod";
 
 type LoginResponse = {
@@ -89,4 +91,10 @@ export async function verifyEmail(data: z.infer<typeof verifyEmailSchema>) {
   } catch (err) {
     return onError(err);
   }
+}
+
+export async function logout() {
+  (await cookies()).delete(process.env.NEXT_PUBLIC_JWT_SECRET_KEY as string);
+  revalidatePath("/");
+  redirect("/");
 }
