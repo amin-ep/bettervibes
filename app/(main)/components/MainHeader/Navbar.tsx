@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <div className="hidden items-center justify-center md:flex">
       <nav className={clsx("relative flex items-center py-2", styles.nav)}>
-        <NavLink className={styles["nav-item"]} href="/">
+        <NavLink className={styles["nav-item"]} href="/home">
           Home
         </NavLink>
         <NavLink className={styles["nav-item"]} href="/musics">
