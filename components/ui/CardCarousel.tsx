@@ -45,7 +45,7 @@ function CardCarousel({ title, children }: Props) {
   return (
     <div className="flex flex-col">
       {title && title.enabled && (
-        <Link href={title.href} className="w-fit">
+        <Link href={title.href} className="mb-2 w-fit hover:underline">
           <h2 className="w-fit pl-2 text-2xl md:text-3xl">{title.text}</h2>
         </Link>
       )}
