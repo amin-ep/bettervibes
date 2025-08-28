@@ -14,6 +14,9 @@
   --color-error: #ff4d4f;
   --color-error-content: #ff807c;
   --color-info: #947cee;
+  --color-base-100: #8c8b9e;
+  --color-base-200: #4c4a60;
+  --color-base-300: #38324e;
 }
 :root {
   --background: #1f1936;

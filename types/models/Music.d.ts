@@ -1,21 +1,29 @@
+type MusicArtist = { _id: string; name: string };
+
+type RelatedMusic = {
+  _id: string;
+  name: string;
+  audioFileUrl: string;
+  coverImageUrl: string;
+  otherArtists: MusicArtist[];
+  artists: MusicArtist[];
+  likes: string[];
+  likesQuantity: number;
+};
+
 type Music = {
   _id: string;
   name: string;
-  coverImageUrl: string;
   audioFileUrl: string;
-
-  artists: Artist[];
-  otherArtists: Artist[];
-
+  coverImageUrl: string;
+  artists: MusicArtist[];
+  otherArtists: MusicArtist[];
   releaseYear: number;
 
   categories: string[];
   genre: string;
-
-  likes: {
-    _id: string;
-    music: Music;
-    user: User;
-  }[];
-  relatedMusics: Music[];
+  likeQuantity: number;
+  createdAt: Date;
+  updatedAt: Date;
+  relatedMusics: RelatedMusic[];
 };
