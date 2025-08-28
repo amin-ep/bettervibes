@@ -1,19 +1,20 @@
 "use client";
 
 import clsx from "clsx";
-import { motion } from "framer-motion";
 import { HTMLAttributes } from "react";
+import { motion } from "framer-motion";
 
-export default function MainHeading({
-  children,
-  className,
-  ...rest
-}: { children: React.ReactNode } & HTMLAttributes<HTMLHeadElement>) {
+type Props = {
+  tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+} & HTMLAttributes<HTMLHeadElement>;
+
+function MotionHeading({ tag, children, className, ...rest }: Props) {
+  const Tag = tag;
   return (
-    <h2
+    <Tag
       {...rest}
       className={clsx(
-        "flex items-center justify-start gap-1 overflow-hidden text-2xl sm:text-3xl md:gap-2 md:text-4xl lg:text-5xl",
+        "flex flex-wrap items-center justify-start gap-1 overflow-hidden",
         className,
       )}
     >
@@ -24,7 +25,7 @@ export default function MainHeading({
           <motion.span
             initial={{
               opacity: 0,
-              transform: "translateY(16px) rotate(5deg)",
+              transform: "translateY(16px)",
               backdropFilter: "blur(5px)",
             }}
             whileInView={{
@@ -41,6 +42,8 @@ export default function MainHeading({
             {str}
           </motion.span>
         ))}
-    </h2>
+    </Tag>
   );
 }
+
+export default MotionHeading;

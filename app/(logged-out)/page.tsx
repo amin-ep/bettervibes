@@ -1,10 +1,9 @@
-import React from "react";
+import MotionHeading from "@/components/motions/MotionHeading";
+import { getAllMusics } from "@/lib/api/musicApi";
 import HeroSection from "./components/HeroSection/HeroSection";
 import MusicGenres from "./components/MusicGenres/MusicGenres";
 import MusicGenresList from "./components/MusicGenres/MusicGenresList";
-import MainHeading from "@/components/ui/MainHeading";
 import TrendingList from "./components/TrendingList/TrendingList";
-import { getAllMusics } from "@/lib/api/musicApi";
 
 async function HomePage() {
   const musics = await getAllMusics();
@@ -28,14 +27,24 @@ async function HomePage() {
     <div>
       <HeroSection />
       <section>
-        <MainHeading>More Than 300 Musics</MainHeading>
+        <MotionHeading
+          className="text-2xl sm:text-3xl md:gap-2 md:text-4xl lg:text-5xl"
+          tag="h2"
+        >
+          More Than 300 Musics
+        </MotionHeading>
         <MusicGenres>
           <MusicGenresList />
         </MusicGenres>
       </section>
       {popularMusics && (
         <section>
-          <MainHeading>Most Popular Musics</MainHeading>
+          <MotionHeading
+            className="text-2xl sm:text-3xl md:gap-2 md:text-4xl lg:text-5xl"
+            tag="h2"
+          >
+            Most Popular Musics
+          </MotionHeading>
           <TrendingList list={popularMusics} />
         </section>
       )}

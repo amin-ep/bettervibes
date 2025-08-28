@@ -1,3 +1,4 @@
+import MotionHeading from "@/components/motions/MotionHeading";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,9 +9,12 @@ function HeroSection() {
     <section className="flex min-h-screen items-center py-4 md:py-8">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
         <article className="flex flex-col gap-2 sm:gap-4 md:gap-6">
-          <h1 className="w-full text-center text-5xl sm:text-6xl md:text-left md:text-7xl xl:text-8xl">
+          <MotionHeading
+            tag="h1"
+            className="w-full text-center text-5xl sm:text-6xl md:text-left md:text-7xl xl:text-8xl"
+          >
             Improve Your Music Taste
-          </h1>
+          </MotionHeading>
           <p className="w-full text-center text-sm md:text-left md:text-base">
             Discover new artists and genres with our curated playlists, all
             available at no cost to you.
