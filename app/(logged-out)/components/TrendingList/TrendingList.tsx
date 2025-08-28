@@ -1,4 +1,4 @@
-import MotionDiv from "@/components/ui/MotionDiv";
+import MotionDiv from "@/components/motions/MotionDiv";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";

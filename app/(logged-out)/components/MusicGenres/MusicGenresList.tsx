@@ -1,4 +1,4 @@
-import MotionLi from "@/components/ui/MotionLi";
+import MotionLi from "@/components/motions/MotionLi";
 import React from "react";
 import MusicGenresListCount from "./MusicGenresListCount";
 const DUMMY_DATA = [
