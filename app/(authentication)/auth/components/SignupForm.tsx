@@ -80,10 +80,7 @@ export default function SignupForm() {
           placeholder="Password"
         />
       </FormLayout.Control>
-      <FormLayout.Control
-        errorMessageColor="error"
-        errorMessage={errors.passwordConfirm?.message}
-      >
+      <FormLayout.Control errorMessage={errors.passwordConfirm?.message}>
         <Input
           {...register("passwordConfirm")}
           iconClass="icon-[hugeicons--password-validation]"

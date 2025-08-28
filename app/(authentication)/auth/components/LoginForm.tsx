@@ -46,10 +46,7 @@ function LoginForm() {
         </FormLayout.Heading>
       </FormLayout.Header>
       <div className="flex flex-col items-center gap-2 md:gap-3">
-        <FormLayout.Control
-          errorMessageColor="white"
-          errorMessage={errors.email?.message}
-        >
+        <FormLayout.Control errorMessage={errors.email?.message}>
           <Input
             {...register("email")}
             iconClass="icon-[hugeicons--at]"
@@ -57,10 +54,7 @@ function LoginForm() {
             placeholder="Email"
           />
         </FormLayout.Control>
-        <FormLayout.Control
-          errorMessageColor="white"
-          errorMessage={errors.password?.message}
-        >
+        <FormLayout.Control errorMessage={errors.password?.message}>
           <Input
             {...register("password")}
             iconClass="icon-[hugeicons--lock-password]"

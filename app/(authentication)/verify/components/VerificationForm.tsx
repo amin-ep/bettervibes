@@ -57,15 +57,14 @@ function VerificationForm() {
         <FormLayout.Heading className="text-left">
           Verify Your Email
         </FormLayout.Heading>
-        <p className="mt-1 text-justify text-xs text-stone-900 md:mt-2 md:text-sm">
+        <FormLayout.Text className="text-justify">
           We have sent an email to{" "}
           <span className="font-semibold">{signupEmail}</span>
           <br />
           Please put the verification code here to verify your account
-        </p>
+        </FormLayout.Text>
       </FormLayout.Header>
       <FormLayout.Control
-        errorMessageColor="error"
         errorMessage={errors.verificationCode?.message}
         labelTitle="Code"
         htmlFor="email-verification-input"

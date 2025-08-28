@@ -25,7 +25,6 @@ type ControlProps = {
   containerClassName?: string;
   children: React.ReactNode;
   labelTitle?: string;
-  errorMessageColor?: "white" | "error";
 } & React.LabelHTMLAttributes<HTMLLabelElement>;
 
 type SubmitProps = {
@@ -37,6 +36,10 @@ type LinkDescriptionProps = {
   href: string;
   message: string;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+
+type TextProps = {
+  children: React.ReactNode;
+} & React.HTMLAttributes<HTMLParagraphElement>;
 
 // Components
 function FormLayout(props: FormProps) {
@@ -78,6 +81,20 @@ function Heading(
   );
 }
 
+function Text({ children, className, ...rest }: TextProps) {
+  return (
+    <p
+      className={clsx(
+        className,
+        "mt-1 text-xs text-stone-900 md:mt-2 md:text-sm",
+      )}
+      {...rest}
+    >
+      {children}
+    </p>
+  );
+}
+
 function Logo({
   containerClassName,
   position = "center",
@@ -107,14 +124,8 @@ function Logo({
 }
 
 function Control(props: ControlProps) {
-  const {
-    children,
-    containerClassName,
-    errorMessageColor = "error",
-    labelTitle,
-    errorMessage,
-    ...rest
-  } = props;
+  const { children, containerClassName, labelTitle, errorMessage, ...rest } =
+    props;
 
   return (
     <motion.div
@@ -136,8 +147,7 @@ function Control(props: ControlProps) {
       {errorMessage && (
         <p
           className={clsx(
-            "flex items-center gap-1.5 text-xs md:text-sm",
-            `text-${errorMessageColor}`,
+            "text-error flex items-center gap-1.5 text-xs md:text-sm",
           )}
         >
           <i className="icon-[hugeicons--information-circle]"></i>
@@ -188,5 +198,5 @@ FormLayout.Submit = Submit;
 FormLayout.LinkDescription = LinkDescription;
 FormLayout.Header = Header;
 FormLayout.Heading = Heading;
-
+FormLayout.Text = Text;
 export default FormLayout;
