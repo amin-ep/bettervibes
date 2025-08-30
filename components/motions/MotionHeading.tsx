@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import { HTMLAttributes } from "react";
 import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations/fade";
 
 type Props = {
   tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -23,17 +24,12 @@ function MotionHeading({ tag, children, className, ...rest }: Props) {
         .split(" ")
         .map((str, idx) => (
           <motion.span
-            initial={{
-              opacity: 0,
-              transform: "translateY(16px)",
-              backdropFilter: "blur(5px)",
+            viewport={{
+              once: true,
             }}
-            whileInView={{
-              opacity: 1,
-
-              transform: "translateY(0)",
-              backdropFilter: "blur(0)",
-            }}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
             transition={{
               delay: (idx + 1) * 0.1,
             }}

@@ -3,6 +3,9 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./HeroSection.module.css";
+import MotionParagraph from "@/components/motions/MotionParagraph";
+import MotionDiv from "@/components/motions/MotionDiv";
+import { fadeUp } from "@/lib/animations/fade";
 
 function HeroSection() {
   return (
@@ -15,11 +18,17 @@ function HeroSection() {
           >
             Improve Your Music Taste
           </MotionHeading>
-          <p className="w-full text-center text-sm md:text-left md:text-base">
+          <MotionParagraph className="w-full text-center text-sm md:text-left md:text-base">
             Discover new artists and genres with our curated playlists, all
             available at no cost to you.
-          </p>
-          <div
+          </MotionParagraph>
+          <MotionDiv
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            transition={{
+              delay: 0.3,
+            }}
             className={clsx(
               styles["circle-col"],
               "relative mx-auto flex w-60 items-center justify-start overflow-hidden md:w-full",
@@ -47,19 +56,29 @@ function HeroSection() {
                 styles.semicircle,
               )}
             ></div>
-          </div>
+          </MotionDiv>
         </article>
 
         <section className="flex flex-col gap-2 sm:gap-4 md:gap-6">
-          <div className="flex items-center justify-center">
+          <MotionDiv
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeUp}
+            className="flex items-center justify-center"
+          >
             <button className="hover:text-background max-w-50 flex-1 cursor-pointer rounded-full border border-white p-2 px-4 hover:-translate-y-[2px] hover:bg-white active:translate-y-[1px] md:p-3 md:px-6">
               Explore
             </button>
             <button className="hover:text-background max-w-50 flex-1 cursor-pointer rounded-full border border-white p-2 px-4 hover:-translate-y-[2px] hover:bg-white active:translate-y-[1px] md:p-3 md:px-6">
               Play
             </button>
-          </div>
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4 md:gap-6">
+          </MotionDiv>
+          <MotionDiv
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeUp}
+            className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4 md:gap-6"
+          >
             <div
               className={clsx(
                 styles["join-col-image-wrapper"],
@@ -75,7 +94,12 @@ function HeroSection() {
                 className="z-1 w-full"
               />
             </div>
-            <div className="flex items-center justify-center">
+            <MotionDiv
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUp}
+              className="flex items-center justify-center"
+            >
               <Link
                 href="/auth"
                 className={clsx(
@@ -96,8 +120,8 @@ function HeroSection() {
                 </span>
                 <i className="icon-[mdi--arrow-right] absolute top-2 right-2 text-2xl md:text-3xl"></i>
               </Link>
-            </div>
-          </div>
+            </MotionDiv>
+          </MotionDiv>
         </section>
       </div>
     </section>

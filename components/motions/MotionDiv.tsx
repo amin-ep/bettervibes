@@ -6,7 +6,11 @@ type Props = {
 } & HTMLMotionProps<"div">;
 
 function MotionDiv({ children, ...rest }: Props) {
-  return <motion.div {...rest}>{children}</motion.div>;
+  return (
+    <motion.div viewport={{ once: true }} {...rest}>
+      {children}
+    </motion.div>
+  );
 }
 
 export default MotionDiv;
