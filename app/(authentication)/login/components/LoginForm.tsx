@@ -58,12 +58,20 @@ function LoginForm() {
             placeholder="Password"
           />
         </FormLayout.Control>
-        <FormLayout.LinkDescription
-          href="/forget-password"
-          message="Forget your password?"
-        >
-          click
-        </FormLayout.LinkDescription>
+        <div className="flex flex-col items-center justify-center">
+          <FormLayout.LinkDescription
+            href="/forget-password"
+            message="Forget your password?"
+          >
+            click
+          </FormLayout.LinkDescription>
+          <FormLayout.LinkDescription
+            href="/signup"
+            message="Do You have account? "
+          >
+            click here
+          </FormLayout.LinkDescription>
+        </div>
         <FormLayout.Submit disabled={isSubmitting}>Log In</FormLayout.Submit>
       </div>
     </FormLayout>
