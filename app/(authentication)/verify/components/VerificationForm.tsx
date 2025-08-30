@@ -16,7 +16,7 @@ import { useTimer } from "@/hooks/useTimer";
 function VerificationForm() {
   const [signupEmail, setSignupEmail] = useState("");
 
-  const time = useTimer({ step: 60 });
+  const { time } = useTimer({ step: 60 });
 
   const {
     register,

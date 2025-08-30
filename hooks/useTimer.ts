@@ -17,5 +17,5 @@ export function useTimer({ step }: { step: number }) {
     };
   }, [time]);
 
-  return time;
+  return { time, setTime };
 }

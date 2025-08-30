@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
+import ForgetPasswordResendButton from "./components/ForgetPasswordResendButton";
 
 export default async function ForgetPasswordSentPage() {
   const cookieStore = await cookies();
@@ -29,6 +30,7 @@ export default async function ForgetPasswordSentPage() {
         We have sent an email to your email account. <br />
         Please checkout to start changing your password.
       </MotionParagraph>
+      <ForgetPasswordResendButton email={forgetPasswordEmail.value} />
 
       <Link href="/" className="btn btn-primary mt-4 text-white">
         Checkout Email
