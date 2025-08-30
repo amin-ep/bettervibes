@@ -1,19 +1,44 @@
 "use client";
 
+import { recoverPassword } from "@/actions/auth-actions";
 import FormLayout from "@/components/ui/FormLayout";
 import { recoverPasswordSchema } from "@/lib/schemas/recoverPasswordSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import z from "zod";
 
-export default function RecoverPasswordForm() {
+export default function RecoverPasswordForm({
+  recoverId,
+}: {
+  recoverId: string;
+}) {
   const {
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    handleSubmit,
   } = useForm({
     resolver: zodResolver(recoverPasswordSchema),
+    defaultValues: {
+      recoverId: recoverId,
+    },
   });
+
+  const router = useRouter();
+
+  const onSubmit = async (data: z.infer<typeof recoverPasswordSchema>) => {
+    const res = await recoverPassword(data);
+    if (res?.status == "success") {
+      toast.success(res?.message);
+      router.push("/login");
+    } else {
+      toast.error(res?.message);
+    }
+  };
+
   return (
-    <FormLayout>
+    <FormLayout onSubmit={handleSubmit(onSubmit)}>
       <FormLayout.Header className="text-center">
         <FormLayout.Logo
           color="primary"
@@ -23,6 +48,7 @@ export default function RecoverPasswordForm() {
         <FormLayout.Heading>Recover Your Password</FormLayout.Heading>
         <FormLayout.Text>Input your new password</FormLayout.Text>
       </FormLayout.Header>
+      <input type="hidden" {...register("recoverId")} />
       <FormLayout.Control errorMessage={errors.password?.message}>
         <FormLayout.Input
           {...register("password")}
@@ -39,7 +65,7 @@ export default function RecoverPasswordForm() {
           placeholder="Confirm your new password"
         />
       </FormLayout.Control>
-      <FormLayout.Submit>Submit</FormLayout.Submit>
+      <FormLayout.Submit disabled={isSubmitting}>Submit</FormLayout.Submit>
     </FormLayout>
   );
 }

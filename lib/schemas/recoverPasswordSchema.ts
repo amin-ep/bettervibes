@@ -5,6 +5,7 @@ export const recoverPasswordSchema = z
   .object({
     password,
     passwordConfirm: password,
+    recoverId: z.string(),
   })
   .superRefine((schema, ctx) => {
     if (schema.password !== schema.passwordConfirm) {

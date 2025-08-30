@@ -4,6 +4,7 @@ import api, { onError } from "@/lib/api";
 import { AUTH_TOKEN_EXPIRES } from "@/lib/constants";
 import { forgetPasswordSchema } from "@/lib/schemas/forgetPasswordSchema";
 import { loginSchema } from "@/lib/schemas/loginSchema";
+import { recoverPasswordSchema } from "@/lib/schemas/recoverPasswordSchema";
 import { signupSchema } from "@/lib/schemas/signupSchema";
 import { verifyEmailSchema } from "@/lib/schemas/verifyEmailSchema";
 import { AxiosResponse } from "axios";
@@ -26,6 +27,11 @@ type SignupResponse = {
 };
 
 type ForgetPasswordResponse = {
+  status: string;
+  message: string;
+};
+
+type RecoverPasswordResponse = {
   status: string;
   message: string;
 };
@@ -117,6 +123,25 @@ export async function forgetPassword(
           expires: expires,
         },
       );
+      return res.data;
+    }
+  } catch (err) {
+    return onError(err);
+  }
+}
+
+export async function recoverPassword(
+  data: z.infer<typeof recoverPasswordSchema>,
+) {
+  const recoverPasswordData = { password: data.password };
+  try {
+    const res: AxiosResponse<RecoverPasswordResponse> = await api.patch(
+      `/auth/recoverPassword/${data.recoverId}`,
+      recoverPasswordData,
+    );
+
+    if (res.status == 200) {
+      (await cookies()).delete(process.env.FORGET_PASSWORD_EMAIL as string);
       return res.data;
     }
   } catch (err) {
