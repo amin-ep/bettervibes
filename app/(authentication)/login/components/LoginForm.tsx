@@ -5,7 +5,6 @@ import FormLayout from "@/components/ui/FormLayout";
 import Input from "@/components/ui/Input";
 import { loginSchema } from "@/lib/schemas/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -24,10 +23,11 @@ function LoginForm() {
 
   const onSubmit = async (data: z.infer<typeof loginSchema>) => {
     const res = await login(data);
-    if (res?.status == "fail") {
-      toast.error(res.message);
+    if (res?.status == "success") {
+      toast.success(res.message);
+      router.push("/home");
     } else {
-      router.push("/");
+      toast.error((res as ErrorResponse).message);
     }
   };
   return (

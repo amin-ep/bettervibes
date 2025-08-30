@@ -38,10 +38,11 @@ type RecoverPasswordResponse = {
 
 export async function login(data: z.infer<typeof loginSchema>) {
   try {
-    const res: AxiosResponse<LoginResponse> = await api.post(
+    const res: AxiosResponse<LoginResponse, ErrorResponse> = await api.post(
       "/auth/login",
       data,
     );
+    console.log(res);
     if (res?.status == 200) {
       (await cookies()).set({
         name: process.env.NEXT_PUBLIC_JWT_SECRET_KEY as string,
@@ -54,7 +55,7 @@ export async function login(data: z.infer<typeof loginSchema>) {
       };
     }
   } catch (err) {
-    onError(err);
+    return onError(err);
   }
 }
 
