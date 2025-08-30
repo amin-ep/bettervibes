@@ -59,7 +59,7 @@ function LoginForm() {
           />
         </FormLayout.Control>
         <FormLayout.LinkDescription
-          href="/forget"
+          href="/forget-password"
           message="Forget your password?"
         >
           click
