@@ -19,7 +19,10 @@ export default async function ForgetPasswordSentPage() {
       <header>
         <span className="icon-[hugeicons--mail-at-sign-01] text-primary text-6xl sm:text-7xl md:text-8xl"></span>
       </header>
-      <MotionHeading className="!justify-center gap-2 text-stone-900" tag="h1">
+      <MotionHeading
+        className="!justify-center gap-2 text-3xl text-stone-900"
+        tag="h1"
+      >
         An email sent to {forgetPasswordEmail.value}
       </MotionHeading>
       <MotionParagraph className="mt-1 text-xs text-stone-900 md:mt-2 md:text-sm">
