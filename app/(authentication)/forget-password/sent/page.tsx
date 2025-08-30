@@ -16,16 +16,17 @@ export default async function ForgetPasswordSentPage() {
   }
   return (
     <div className="text-center text-black">
-      <MotionHeading
-        className="!justify-center text-3xl text-stone-900 lg:text-4xl"
-        tag="h1"
-      >
+      <header>
+        <span className="icon-[hugeicons--mail-at-sign-01] text-primary text-6xl sm:text-7xl md:text-8xl"></span>
+      </header>
+      <MotionHeading className="!justify-center gap-2 text-stone-900" tag="h1">
         An email sent to {forgetPasswordEmail.value}
       </MotionHeading>
       <MotionParagraph className="mt-1 text-xs text-stone-900 md:mt-2 md:text-sm">
         We have sent an email to your email account. <br />
         Please checkout to start changing your password.
       </MotionParagraph>
+
       <Link href="/" className="btn btn-primary mt-4 text-white">
         Checkout Email
       </Link>
