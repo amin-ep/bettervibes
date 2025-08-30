@@ -1,22 +1,33 @@
 "use client";
 
+import { forgetPassword } from "@/actions/auth-actions";
 import FormLayout from "@/components/ui/FormLayout";
 import { forgetPasswordSchema } from "@/lib/schemas/forgetPasswordSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import z from "zod";
 
 export default function ForgetPasswordForm() {
   const {
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     handleSubmit,
   } = useForm({
     resolver: zodResolver(forgetPasswordSchema),
   });
 
-  const onSubmit = (data: z.infer<typeof forgetPasswordSchema>) => {
-    console.log(data);
+  const router = useRouter();
+
+  const onSubmit = async (data: z.infer<typeof forgetPasswordSchema>) => {
+    const res = await forgetPassword(data);
+    if (res?.status == "success") {
+      toast.success(res.message);
+      router.push("/forget-password/sent");
+    } else {
+      toast.error(res?.message);
+    }
   };
   return (
     <FormLayout onSubmit={handleSubmit(onSubmit)}>
@@ -39,7 +50,9 @@ export default function ForgetPasswordForm() {
           placeholder="example@email.io"
         />
       </FormLayout.Control>
-      <FormLayout.Submit>Send Me Code</FormLayout.Submit>
+      <FormLayout.Submit disabled={isSubmitting}>
+        Send Me Code
+      </FormLayout.Submit>
     </FormLayout>
   );
 }
