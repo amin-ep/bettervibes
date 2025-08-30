@@ -1,19 +1,17 @@
 "use client";
 
+import { login } from "@/actions/auth-actions";
 import FormLayout from "@/components/ui/FormLayout";
 import Input from "@/components/ui/Input";
-import { login } from "@/actions/auth-actions";
 import { loginSchema } from "@/lib/schemas/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { z } from "zod";
 
 function LoginForm() {
-  // const [isPending, startTransition] = useTransition();
   const {
     register,
     formState: { errors, isSubmitting },
@@ -25,14 +23,12 @@ function LoginForm() {
   const router = useRouter();
 
   const onSubmit = async (data: z.infer<typeof loginSchema>) => {
-    // startTransition(async () => {
     const res = await login(data);
     if (res?.status == "fail") {
       toast.error(res.message);
     } else {
       router.push("/");
     }
-    // });
   };
   return (
     <FormLayout
@@ -40,8 +36,8 @@ function LoginForm() {
       className="h-full justify-between"
     >
       <FormLayout.Header className="mb-2 md:mb-4 lg:mb-6">
-        <FormLayout.Logo position="center" color="white" />
-        <FormLayout.Heading className="text-center text-white">
+        <FormLayout.Logo position="center" color="primary" />
+        <FormLayout.Heading className="text-center">
           Login Into Your Account
         </FormLayout.Heading>
       </FormLayout.Header>
@@ -62,18 +58,13 @@ function LoginForm() {
             placeholder="Password"
           />
         </FormLayout.Control>
-        <Link
+        <FormLayout.LinkDescription
           href="/forget"
-          className="btn btn-secondary hover:text-secondary hover:bg- w-full hover:bg-white"
+          message="Forget your password?"
         >
-          Forget Password
-        </Link>
-        <FormLayout.Submit
-          disabled={isSubmitting}
-          className="text-primary bg-white"
-        >
-          Log In
-        </FormLayout.Submit>
+          click
+        </FormLayout.LinkDescription>
+        <FormLayout.Submit disabled={isSubmitting}>Log In</FormLayout.Submit>
       </div>
     </FormLayout>
   );

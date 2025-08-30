@@ -178,12 +178,12 @@ function LinkDescription({
   ...rest
 }: LinkDescriptionProps) {
   return (
-    <div className="my-1 flex flex-wrap items-center justify-start text-sm text-white">
+    <div className="text-base-300 my-1 flex flex-wrap items-center justify-start text-sm font-semibold">
       {message}{" "}
       <Link
         href={href}
         {...rest}
-        className={clsx("hover:text-primary mb-0.5 underline", className)}
+        className={clsx("text-primary mb-0.5 hover:underline", className)}
       >
         {children}
       </Link>
