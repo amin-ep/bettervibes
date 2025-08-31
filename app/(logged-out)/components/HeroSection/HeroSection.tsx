@@ -18,7 +18,12 @@ function HeroSection() {
           >
             Improve Your Music Taste
           </MotionHeading>
-          <MotionParagraph className="w-full text-center text-sm md:text-left md:text-base">
+          <MotionParagraph
+            transition={{
+              delay: 0.3,
+            }}
+            className="w-full text-center text-sm md:text-left md:text-base"
+          >
             Discover new artists and genres with our curated playlists, all
             available at no cost to you.
           </MotionParagraph>
@@ -65,6 +70,9 @@ function HeroSection() {
             whileInView="visible"
             variants={fadeUp}
             className="flex items-center justify-center"
+            transition={{
+              delay: 0.3,
+            }}
           >
             <button className="hover:text-background max-w-50 flex-1 cursor-pointer rounded-full border border-white p-2 px-4 hover:-translate-y-[2px] hover:bg-white active:translate-y-[1px] md:p-3 md:px-6">
               Explore
@@ -78,6 +86,9 @@ function HeroSection() {
             whileInView="visible"
             variants={fadeUp}
             className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4 md:gap-6"
+            transition={{
+              delay: 0.3,
+            }}
           >
             <div
               className={clsx(
@@ -99,6 +110,9 @@ function HeroSection() {
               whileInView="visible"
               variants={fadeUp}
               className="flex items-center justify-center"
+              transition={{
+                delay: 0.3,
+              }}
             >
               <Link
                 href="/auth"
