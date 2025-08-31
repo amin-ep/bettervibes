@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Toast from "@/components/Toast";
+import "keen-slider/keen-slider.min.css";
 
 const poppins = localFont({
   src: "./assets/fonts/Poppins-Light.ttf",

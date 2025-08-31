@@ -1,12 +1,13 @@
 "use client";
 import { fadeUp } from "@/lib/animations/fade";
-import { motion } from "framer-motion";
+import { HTMLMotionProps, motion } from "framer-motion";
 
 export default function MotionParagraph({
   children,
+  ...rest
 }: {
   children: React.ReactNode;
-} & React.HTMLAttributes<HTMLParagraphElement>) {
+} & HTMLMotionProps<"p">) {
   return (
     <motion.p
       variants={fadeUp}
@@ -15,6 +16,7 @@ export default function MotionParagraph({
       }}
       initial="hidden"
       whileInView="visible"
+      {...rest}
     >
       {children}
     </motion.p>

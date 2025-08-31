@@ -4,6 +4,7 @@ import HeroSection from "./components/HeroSection/HeroSection";
 import MusicGenres from "./components/MusicGenres/MusicGenres";
 import MusicGenresList from "./components/MusicGenres/MusicGenresList";
 import TrendingList from "./components/TrendingList/TrendingList";
+import Categories from "./components/Categories/Categories";
 
 async function HomePage() {
   const musics = await getAllMusics();
@@ -48,6 +49,7 @@ async function HomePage() {
           <TrendingList list={popularMusics} />
         </section>
       )}
+      <Categories />
     </div>
   );
 }
