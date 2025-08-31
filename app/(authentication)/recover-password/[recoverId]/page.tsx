@@ -1,5 +1,5 @@
 import React from "react";
-import RecoverPasswordForm from "../components/RecoverPasswordForm";
+import RecoverPasswordForm from "./components/RecoverPasswordForm";
 import { checkRecoverId } from "@/lib/api/userApi";
 import { redirect } from "next/navigation";
 
