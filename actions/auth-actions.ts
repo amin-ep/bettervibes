@@ -150,7 +150,7 @@ export async function recoverPassword(
   }
 }
 
-export async function logout() {
+export async function signout() {
   (await cookies()).delete(process.env.NEXT_PUBLIC_JWT_SECRET_KEY as string);
   revalidatePath("/");
   redirect("/");

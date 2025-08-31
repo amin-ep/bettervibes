@@ -1,3 +1,4 @@
+import { signout } from "@/actions/auth-actions";
 import { getAuthToken } from "@/lib/api/authorization";
 import { getCurrentUser } from "@/lib/api/userApi";
 import Image from "next/image";
@@ -24,11 +25,11 @@ export default async function UserProfileLink() {
       if ((res as SuccessResponse).status == "success") {
         currentUser = (res as SuccessResponse).data;
       } else {
-        redirect("/auth");
+        redirect("/login");
       }
     }
   } else {
-    redirect("/auth");
+    redirect("/login");
   }
 
   const userImageSrc = currentUser?.imageUrl
@@ -77,7 +78,10 @@ export default async function UserProfileLink() {
             </Link>
           </li>
           <li className="border-t border-t-stone-300">
-            <button className="hover:text-primary px-0 py-4 hover:pl-1">
+            <button
+              onClick={signout}
+              className="hover:text-primary px-0 py-4 hover:pl-1"
+            >
               Sign Out
             </button>
           </li>

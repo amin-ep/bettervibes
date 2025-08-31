@@ -1,4 +1,3 @@
-import { getAuthToken } from "@/lib/api/authorization";
 import HeaderIconifyLinkButton from "./HeaderIconifyButton";
 import MobileNavbar from "./MobileNavbar";
 import UserProfileLink from "./UserProfileLink";
