@@ -2,12 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export default async function middleware(request: NextRequest) {
   const authToken = request.cookies.get(
-    process.env.NEXT_PUBLIC_JWT_SECRET_KEY as string,
+    process.env.NEXT_PUBLIC_JWT_SECRET_KEY ?? "",
   )?.value;
 
   const path = request.nextUrl.pathname;
 
-  const authRoutes = [
+  const publicRouts = [
+    "/",
     "/signup",
     "/login",
     "/forget-password",
@@ -15,9 +16,13 @@ export default async function middleware(request: NextRequest) {
     "/verify",
   ];
 
-  // if (!authRoutes.some((route) => path.startsWith(route)) && !authToken) {
-  //   return NextResponse.redirect(new URL("/", request.url));
-  // }
+  if (publicRouts.some((route) => path.startsWith(route))) {
+    return NextResponse.next();
+  }
 
-  // return NextResponse.next();
+  if (!authToken) {
+    return NextResponse.redirect(new URL("/", request.url));
+  } else {
+    return NextResponse.next();
+  }
 }
