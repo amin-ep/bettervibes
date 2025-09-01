@@ -1,12 +1,11 @@
 "use client";
 
 import clsx from "clsx";
+import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import React, { ReactNode } from "react";
 import Input from "./Input";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import styles from "./FormLayout.module.css";
 
 // Types
 type FormProps = {
@@ -29,6 +28,7 @@ type ControlProps = {
 
 type SubmitProps = {
   children: React.ReactNode;
+  isSubmitting: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 type LinkDescriptionProps = {
@@ -158,14 +158,14 @@ function Control(props: ControlProps) {
   );
 }
 
-function Submit({ children, className, ...props }: SubmitProps) {
+function Submit({ children, className, isSubmitting, ...props }: SubmitProps) {
   return (
     <button
       type="submit"
       {...props}
       className={clsx("btn btn-primary mt-3 md:mt-6", className)}
     >
-      {children}
+      {isSubmitting ? <span className="loading"></span> : children}
     </button>
   );
 }

@@ -72,7 +72,9 @@ function LoginForm() {
             click here
           </FormLayout.LinkDescription>
         </div>
-        <FormLayout.Submit disabled={isSubmitting}>Log In</FormLayout.Submit>
+        <FormLayout.Submit isSubmitting={isSubmitting} disabled={isSubmitting}>
+          Log In
+        </FormLayout.Submit>
       </div>
     </FormLayout>
   );
