@@ -8,14 +8,15 @@ type GetAllMusicsResponse = {
   };
 };
 
-export async function getAllMusics() {
+export async function getAllMusics(query?: string) {
   try {
-    const res: AxiosResponse<GetAllMusicsResponse> = await api.get("/music");
+    const res: AxiosResponse<GetAllMusicsResponse, ErrorResponse> =
+      await api.get(`/music${query ? `?${query}` : ""}`);
     if (res.status == 200) {
       return res.data.data.docs;
     }
   } catch (err) {
-    return onError(err);
+    return onError(err) as ErrorResponse;
   }
 }
 

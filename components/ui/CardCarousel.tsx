@@ -14,8 +14,6 @@ function CardCarousel({ title, children }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  console.log();
-
   const [sliderRef, instanceRef] = useKeenSlider({
     slides: {
       perView: 2.2,
@@ -101,7 +99,7 @@ function Arrow({
   return (
     <div
       className={clsx(
-        "to-background absolute top-0 bottom-0 z-2 items-center justify-center from-transparent",
+        "to-accent-dark absolute top-0 bottom-0 z-2 items-center justify-center from-transparent",
         side == "left" ? "left-0 bg-gradient-to-l" : "right-0 bg-gradient-to-r",
         disabled ? "hidden" : "flex",
       )}

@@ -16,7 +16,7 @@ export default function MusicGenres({
       </div>
       <div
         className={clsx(
-          "to-background flex items-center justify-center bg-gradient-to-b from-transparent",
+          "to-accent-dark flex items-center justify-center bg-gradient-to-b from-transparent",
           !showMore ? "-translate-y-10" : "",
         )}
       >

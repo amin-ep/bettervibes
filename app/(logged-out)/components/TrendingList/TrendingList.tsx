@@ -38,7 +38,7 @@ function TrendingList({ list }: { list: TrendItem[] }) {
             height={240}
             className="aspect-square w-full rounded-xl brightness-75"
           />
-          <div className="to-background absolute right-0 bottom-0 left-0 bg-gradient-to-b from-transparent p-4">
+          <div className="to-accent-dark absolute right-0 bottom-0 left-0 bg-gradient-to-b from-transparent p-4">
             <p className="font-playfair line-clamp-1 text-3xl font-bold">
               {item.name}
             </p>

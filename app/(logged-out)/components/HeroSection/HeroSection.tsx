@@ -74,10 +74,10 @@ function HeroSection() {
               delay: 0.3,
             }}
           >
-            <button className="hover:text-background max-w-50 flex-1 cursor-pointer rounded-full border border-white p-2 px-4 hover:-translate-y-[2px] hover:bg-white active:translate-y-[1px] md:p-3 md:px-6">
+            <button className="hover:text-accent-dark max-w-50 flex-1 cursor-pointer rounded-full border border-white p-2 px-4 hover:-translate-y-[2px] hover:bg-white active:translate-y-[1px] md:p-3 md:px-6">
               Explore
             </button>
-            <button className="hover:text-background max-w-50 flex-1 cursor-pointer rounded-full border border-white p-2 px-4 hover:-translate-y-[2px] hover:bg-white active:translate-y-[1px] md:p-3 md:px-6">
+            <button className="hover:text-accent-dark max-w-50 flex-1 cursor-pointer rounded-full border border-white p-2 px-4 hover:-translate-y-[2px] hover:bg-white active:translate-y-[1px] md:p-3 md:px-6">
               Play
             </button>
           </MotionDiv>

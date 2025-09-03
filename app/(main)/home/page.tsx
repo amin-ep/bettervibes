@@ -5,27 +5,17 @@ import { getAllMusics } from "@/lib/api/musicApi";
 import { musicsGenres } from "@/lib/constants";
 
 export default async function HomePage() {
-  const musics = await getAllMusics();
+  // const musics = await getAllMusics();
+  const recentlyAddedMusics = await getAllMusics("sort=-createdAt&limit=20");
 
   return (
     <MainContainer>
       <div className="flex flex-col gap-6 md:gap-8">
-        {musicsGenres.map((genre) => (
-          <CardCarousel
-            title={{
-              enabled: true,
-              href: `/musics/${genre.toLowerCase()}`,
-              text: genre,
-            }}
-            key={genre}
-          >
-            {(musics as Music[])
-              .filter((music) => music.genre == genre)
-              .map((music) => (
-                <MusicCarouselCard music={music} key={music._id} />
-              ))}
-          </CardCarousel>
-        ))}
+        <CardCarousel>
+          {(recentlyAddedMusics as Music[]).map((music) => (
+            <MusicCarouselCard music={music} key={music._id} />
+          ))}
+        </CardCarousel>
       </div>
     </MainContainer>
   );
