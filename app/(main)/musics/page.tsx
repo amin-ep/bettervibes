@@ -3,7 +3,6 @@ import MainContainer from "@/components/ui/MainContainer";
 import MusicCarouselCard from "@/components/ui/MusicCarouselCard/MusicCarouselCard";
 import { getAllMusics } from "@/lib/api/musicApi";
 import { musicsGenres } from "@/lib/constants";
-import React from "react";
 
 export default async function MusicPage() {
   const musics = await getAllMusics();
@@ -15,7 +14,7 @@ export default async function MusicPage() {
           <CardCarousel
             title={{
               enabled: true,
-              href: `/musics/${genre.toLowerCase()}`,
+              href: `/genres/${genre.toLowerCase()}`,
               text: genre,
             }}
             key={genre}

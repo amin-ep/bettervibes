@@ -21,7 +21,7 @@ function MotionHeading({ tag, children, className, ...rest }: Props) {
     >
       {children
         ?.toString()
-        .split(" ")
+        .split(",")
         .map((str, idx) => (
           <motion.span
             viewport={{
