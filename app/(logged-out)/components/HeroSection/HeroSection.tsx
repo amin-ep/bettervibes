@@ -14,7 +14,7 @@ function HeroSection() {
         <article className="flex flex-col gap-2 sm:gap-4 md:gap-6">
           <MotionHeading
             tag="h1"
-            className="w-full text-center text-5xl sm:text-6xl md:text-left md:text-7xl xl:text-8xl"
+            className="w-full !justify-center text-center text-5xl sm:text-6xl md:!justify-start md:text-left md:text-7xl xl:text-8xl"
           >
             Improve Your Music Taste
           </MotionHeading>
