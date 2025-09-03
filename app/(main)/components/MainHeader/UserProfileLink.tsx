@@ -51,7 +51,7 @@ export default async function UserProfileLink() {
         )}
       </span>
 
-      <div className="dropdown-content flex min-w-80 flex-col justify-between rounded-xl bg-white p-3 text-stone-900 shadow-lg md:p-5">
+      <div className="dropdown-content !bg-base-300 flex min-w-80 flex-col justify-between rounded-xl p-3 text-white shadow-lg md:p-5">
         <div className="flex flex-col items-center justify-center gap-2">
           <Image
             src={userImageSrc ?? "/images/user-avatar.gif"}
@@ -69,7 +69,7 @@ export default async function UserProfileLink() {
           <li className="">
             <Link
               href="/account"
-              className="hover:text-primary px-0 py-4 hover:pl-1"
+              className="hover:text-secondary px-0 py-4 hover:pl-1"
             >
               Setting
             </Link>
@@ -77,7 +77,7 @@ export default async function UserProfileLink() {
           <li className="border-t border-t-stone-300">
             <button
               onClick={signout}
-              className="hover:text-primary px-0 py-4 hover:pl-1"
+              className="hover:text-secondary px-0 py-4 hover:pl-1"
             >
               Sign Out
             </button>

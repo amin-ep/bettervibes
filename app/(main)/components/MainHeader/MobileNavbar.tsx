@@ -4,23 +4,27 @@ import MobileNavbarLink from "./MobileNavbarLink";
 
 export default function MobileNavbar() {
   const navItems: { iconClass: string; title: string; href: string }[] = [
-    { iconClass: "icon-[mdi-light--home]", title: "Home", href: "/" },
+    { iconClass: "icon-[hugeicons--home-11]", title: "Home", href: "/" },
     {
-      iconClass: "icon-[mdi-light--music]",
+      iconClass: "icon-[hugeicons--music-note-square-02]",
       title: "Musics",
       href: "/musics",
     },
     {
-      iconClass: "icon-[mdi--user]",
+      iconClass: "icon-[hugeicons--contracts]",
       title: "Contact",
       href: "/contact",
     },
     {
-      iconClass: "icon-[mdi-light--information]",
+      iconClass: "icon-[hugeicons--information-square]",
       title: "About",
       href: "/about",
     },
-    { iconClass: "icon-[mdi--disc]", title: "Albums", href: "/albums" },
+    {
+      iconClass: "icon-[hugeicons--play-square]",
+      title: "Albums",
+      href: "/albums",
+    },
   ];
   return (
     <>
@@ -30,7 +34,7 @@ export default function MobileNavbar() {
         </HeaderIconifyButton>
         <nav
           tabIndex={0}
-          className="dropdown-content dropdown-se menu bg-base-100 rounded-box z-1 flex w-52 flex-col gap-1 p-2 shadow-sm"
+          className="dropdown-content dropdown-se menu !bg-base-300 rounded-box z-1 flex w-52 flex-col gap-1 p-2 shadow-sm"
         >
           {navItems.map((item, i) => {
             return (
