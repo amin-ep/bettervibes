@@ -18,18 +18,15 @@ type ErrorResponse = {
 export default async function UserProfileLink() {
   let currentUser: User | null = null;
   const authToken = await getAuthToken();
-  if (authToken) {
-    const res: undefined | SuccessResponse | ErrorResponse =
-      await getCurrentUser(authToken as string);
-    if (res) {
-      if ((res as SuccessResponse).status == "success") {
-        currentUser = (res as SuccessResponse).data;
-      } else {
-        redirect("/login");
-      }
+  const res: undefined | SuccessResponse | ErrorResponse = await getCurrentUser(
+    authToken as string,
+  );
+  if (res) {
+    if ((res as SuccessResponse).status == "success") {
+      currentUser = (res as SuccessResponse).data;
+    } else {
+      redirect("/login");
     }
-  } else {
-    redirect("/login");
   }
 
   const userImageSrc = currentUser?.imageUrl

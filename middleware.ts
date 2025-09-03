@@ -7,8 +7,7 @@ export default async function middleware(request: NextRequest) {
 
   const path = request.nextUrl.pathname;
 
-  const publicRouts = [
-    "/",
+  const loggedOutRoutes = [
     "/signup",
     "/login",
     "/forget-password",
@@ -16,13 +15,18 @@ export default async function middleware(request: NextRequest) {
     "/verify",
   ];
 
-  if (publicRouts.some((route) => path.startsWith(route))) {
-    return NextResponse.next();
+  function isLoggedOutRoutes() {
+    return (
+      loggedOutRoutes.some((route) => path.startsWith(route)) || path === "/"
+    );
   }
 
-  if (!authToken) {
-    return NextResponse.redirect(new URL("/", request.url));
-  } else {
+  if (!authToken && isLoggedOutRoutes()) {
+    return NextResponse.next();
+  } else if (authToken) {
+    if (isLoggedOutRoutes()) {
+      return NextResponse.redirect(new URL("/home", request.url));
+    }
     return NextResponse.next();
   }
 }
