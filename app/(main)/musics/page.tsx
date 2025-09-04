@@ -14,7 +14,10 @@ export default async function MusicPage() {
           <CardCarousel
             title={{
               enabled: true,
-              href: `/genres/${genre.toLowerCase()}`,
+              linked: {
+                enabled: true,
+                href: `/genres/${genre.toLowerCase()}`,
+              },
               text: genre,
             }}
             key={genre}

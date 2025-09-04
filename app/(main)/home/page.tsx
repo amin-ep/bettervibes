@@ -11,7 +11,12 @@ export default async function HomePage() {
   return (
     <MainContainer>
       <div className="flex flex-col gap-6 md:gap-8">
-        <CardCarousel>
+        <CardCarousel
+          title={{
+            text: "Recently Added Musics",
+            enabled: true,
+          }}
+        >
           {(recentlyAddedMusics as Music[]).map((music) => (
             <MusicCarouselCard music={music} key={music._id} />
           ))}

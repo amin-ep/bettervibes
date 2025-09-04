@@ -6,7 +6,11 @@ import "keen-slider/keen-slider.min.css";
 import clsx from "clsx";
 import { useState } from "react";
 type Props = {
-  title?: { enabled: boolean; href: string; text: string };
+  title?: {
+    enabled: boolean;
+    text: string;
+    linked?: { enabled: boolean; href: string };
+  };
   children: React.ReactNode;
 };
 
@@ -53,13 +57,19 @@ function CardCarousel({ title, children }: Props) {
       },
     },
   });
+
   return (
     <div className="flex flex-col">
-      {title && title.enabled && (
-        <Link href={title.href} className="mb-2 w-fit hover:underline">
-          <h2 className="w-fit pl-2 text-2xl md:text-3xl">{title.text}</h2>
-        </Link>
-      )}
+      {title &&
+        (title.linked?.enabled ? (
+          <Link href={title.linked.href} className="w-fit hover:underline">
+            <h2 className="mb-2 w-fit pl-2 text-2xl md:text-3xl">
+              {title.text}
+            </h2>
+          </Link>
+        ) : (
+          <h2 className="mb-2 w-fit pl-2 text-2xl md:text-3xl">{title.text}</h2>
+        ))}
 
       <div className="navigation-wrapper relative">
         <div className="keen-slider z-1" ref={sliderRef}>

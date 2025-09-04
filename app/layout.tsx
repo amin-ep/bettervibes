@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Toast from "@/components/Toast";
 import "keen-slider/keen-slider.min.css";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import { PlayProvider } from "@/contexts/PlayContext";
 
 const poppins = localFont({
   src: "./assets/fonts/Poppins-Light.ttf",
@@ -28,8 +30,12 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <body className={`${playfair.variable} ${poppins.variable}`}>
-        <Toast />
-        {children}
+        <ReactQueryProvider>
+          <PlayProvider>
+            <Toast />
+            {children}
+          </PlayProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
