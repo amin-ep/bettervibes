@@ -1,7 +1,7 @@
-import React from "react";
+import { createPortal } from "react-dom";
 
 function PlayingDialog() {
-  return <div></div>;
+  return createPortal(<dialog></dialog>, document.body);
 }
 
 export default PlayingDialog;
