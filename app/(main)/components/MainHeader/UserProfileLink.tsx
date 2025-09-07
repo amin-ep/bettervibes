@@ -35,18 +35,18 @@ export default async function UserProfileLink() {
 
   return (
     <div className="dropdown dropdown-hover dropdown-end dropdown-bottom flex items-center justify-between gap-2 rounded-full border border-stone-200">
-      <span role="button">
+      <span role="button" className="aspect-square w-10">
         {userImageSrc ? (
           <Image
             src={userImageSrc}
             alt={currentUser?.username as string}
             width={40}
             height={40}
-            className="aspect-square w-10 rounded-full object-cover"
+            className="w-full rounded-full object-cover"
           />
         ) : (
-          <span className="aspect-square items-center justify-center">
-            {currentUser?.username.slice(0, 1)}
+          <span className="flex aspect-square w-full items-center justify-center">
+            {currentUser?.username.slice(0, 1).toUpperCase()}
           </span>
         )}
       </span>

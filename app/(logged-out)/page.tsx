@@ -8,8 +8,9 @@ import Categories from "./components/Categories/Categories";
 
 async function HomePage() {
   const musics = await getAllMusics();
+  console.log(musics);
   let popularMusics: TrendItem[] | null = null;
-  if (musics && (musics as Music[])) {
+  if (musics && (musics as Music[]).length > 0) {
     popularMusics = (musics as Music[])
       .sort((a, b) => a.likeQuantity + b.likeQuantity)
       .map((music) => ({

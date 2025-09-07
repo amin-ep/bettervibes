@@ -12,9 +12,10 @@ type Props = {
     linked?: { enabled: boolean; href: string };
   };
   children: React.ReactNode;
+  arrows?: boolean;
 };
 
-function CardCarousel({ title, children }: Props) {
+function CardCarousel({ title, children, arrows = true }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -75,7 +76,7 @@ function CardCarousel({ title, children }: Props) {
         <div className="keen-slider z-1" ref={sliderRef}>
           {children}
         </div>
-        {loaded && instanceRef.current && (
+        {loaded && instanceRef.current && arrows && (
           <>
             <Arrow
               onClick={() => instanceRef.current?.prev()}
