@@ -64,7 +64,7 @@ function CardCarousel({ title, children, arrows = true }: Props) {
       {title &&
         (title.linked?.enabled ? (
           <Link href={title.linked.href} className="w-fit hover:underline">
-            <h2 className="mb-2 w-fit pl-2 text-2xl md:text-3xl">
+            <h2 className="mb-2 w-fit pl-2 text-2xl capitalize md:text-3xl">
               {title.text}
             </h2>
           </Link>
