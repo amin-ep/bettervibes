@@ -41,6 +41,9 @@ export default function EditProfileForm({ userData }: { userData: User }) {
     console.log(data);
     const formData = new FormData();
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    // TODO: fix here
     Object.keys(data).map((key) => formData.append(key, data[key]));
     await updateMe(formData).then((res) => {
       if (res?.status === "success") {
