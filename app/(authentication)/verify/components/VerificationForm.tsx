@@ -32,7 +32,7 @@ function VerificationForm() {
     const res = await verifyEmail(data);
     if (res?.status == "success") {
       toast.info(res.message);
-      router.push("/");
+      router.push("/home");
     } else {
       toast.error(res?.message);
     }
@@ -76,7 +76,9 @@ function VerificationForm() {
           {...register("verificationCode")}
         />
       </FormLayout.Control>
-      <FormLayout.Submit disabled={isSubmitting}>Verify</FormLayout.Submit>
+      <FormLayout.Submit isSubmitting={isSubmitting} disabled={isSubmitting}>
+        Verify
+      </FormLayout.Submit>
       <div className="mt-1 text-xs md:mt-2 md:text-sm">
         {time == 0 ? (
           <button className="text-primary hover:text-secondary duration-0">

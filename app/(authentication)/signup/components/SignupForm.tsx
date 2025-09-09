@@ -22,6 +22,13 @@ export default function SignupForm() {
   const router = useRouter();
 
   const onSubmit = async (data: z.infer<typeof signupSchema>) => {
+    console.log(data);
+    if (data.firstName?.length == 0) {
+      delete data.firstName;
+    }
+    if (data.lastName?.length == 0) {
+      delete data.lastName;
+    }
     const res = await signup(data);
 
     if (res?.status === "success") {
@@ -88,7 +95,9 @@ export default function SignupForm() {
           placeholder="Confirm Password"
         />
       </FormLayout.Control>
-      <FormLayout.Submit disabled={isSubmitting}>Sign Up</FormLayout.Submit>
+      <FormLayout.Submit isSubmitting={isSubmitting} disabled={isSubmitting}>
+        Sign Up
+      </FormLayout.Submit>
     </FormLayout>
   );
 }

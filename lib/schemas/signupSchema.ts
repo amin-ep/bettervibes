@@ -3,8 +3,8 @@ import { email, firstName, lastName, password, username } from ".";
 
 const signupSchema = z
   .object({
-    firstName: firstName.optional(),
-    lastName: lastName.optional(),
+    firstName: z.union([firstName, z.literal("")]).optional(),
+    lastName: z.union([lastName, z.literal("")]).optional(),
     email,
     password,
     passwordConfirm: password,

@@ -124,8 +124,14 @@ function Logo({
 }
 
 function Control(props: ControlProps) {
-  const { children, containerClassName, labelTitle, errorMessage, ...rest } =
-    props;
+  const {
+    children,
+    containerClassName,
+    labelTitle,
+    className,
+    errorMessage,
+    ...rest
+  } = props;
 
   return (
     <motion.div
@@ -137,7 +143,10 @@ function Control(props: ControlProps) {
       {labelTitle && (
         <label
           htmlFor={props.htmlFor}
-          className="label text-xs font-bold text-stone-950 md:text-sm"
+          className={clsx(
+            "label text-xs font-bold text-stone-950 md:text-sm",
+            className,
+          )}
           {...rest}
         >
           {labelTitle}

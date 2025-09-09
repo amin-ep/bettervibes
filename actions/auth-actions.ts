@@ -96,6 +96,11 @@ export async function verifyEmail(data: z.infer<typeof verifyEmailSchema>) {
 
     if (res.status == 200) {
       (await cookies()).delete(process.env.NEXT_PUBLIC_SIGNUP_EMAIL as string);
+      (await cookies()).set({
+        name: process.env.NEXT_PUBLIC_JWT_SECRET_KEY as string,
+        value: res?.data?.token,
+        expires: AUTH_TOKEN_EXPIRES,
+      });
       return {
         status: "success",
         message: "Hope to have better vibes here :)",
