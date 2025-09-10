@@ -1,5 +1,6 @@
 "use client";
 
+import MotionButton from "@/components/motions/MotionButton";
 import clsx from "clsx";
 import { useState } from "react";
 
@@ -20,12 +21,21 @@ export default function MusicGenres({
           !showMore ? "-translate-y-10" : "",
         )}
       >
-        <button
+        <MotionButton
+          initial={{
+            scale: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          whileInView={{
+            scale: 1,
+          }}
           className="btn btn-accent"
           onClick={() => setShowMore((state) => !state)}
         >
           Show More
-        </button>
+        </MotionButton>
       </div>
     </div>
   );
