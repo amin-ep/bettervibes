@@ -30,6 +30,11 @@ function ChangePasswordForm() {
   return (
     <AccountContentContainer>
       <FormLayout onSubmit={handleSubmit(onSubmit)}>
+        <FormLayout.Header>
+          <FormLayout.Heading className="text-white">
+            Change Password
+          </FormLayout.Heading>
+        </FormLayout.Header>
         <FormLayout.Control
           className="text-white"
           labelTitle="Current Password"
@@ -47,14 +52,9 @@ function ChangePasswordForm() {
             className="!bg-base-100 !border-base-100 focus:!border-base-200"
           />
         </FormLayout.Control>
-        <div>
-          <FormLayout.Submit
-            isSubmitting={isSubmitting}
-            disabled={isSubmitting}
-          >
-            Change Password
-          </FormLayout.Submit>
-        </div>
+        <FormLayout.Submit isSubmitting={isSubmitting} disabled={isSubmitting}>
+          Change Password
+        </FormLayout.Submit>
       </FormLayout>
     </AccountContentContainer>
   );

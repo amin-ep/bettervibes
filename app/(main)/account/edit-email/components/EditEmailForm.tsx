@@ -54,6 +54,11 @@ function EditEmailForm() {
   return (
     <AccountContentContainer>
       <FormLayout onSubmit={handleSubmit(onSubmit)}>
+        <FormLayout.Header>
+          <FormLayout.Heading className="text-white">
+            Edit Email
+          </FormLayout.Heading>
+        </FormLayout.Header>
         <FormLayout.Control
           errorMessage={
             (
