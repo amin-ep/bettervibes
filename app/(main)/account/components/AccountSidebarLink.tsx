@@ -27,7 +27,7 @@ export default function AccountSidebarLink({
         "relative z-10 flex items-center gap-4 overflow-hidden rounded-full rounded-r-none px-4 pl-2 text-sm lg:text-base",
         path == href
           ? "after:translate-x-0"
-          : "hover:text-primary after:translate-x-[100%] hover:after:translate-x-1/3",
+          : "hover:text-primary after:translate-x-[100%] hover:after:translate-x-0",
         "after:bg-accent-dark after:absolute after:inset-0 after:z-5 after:w-full after:rounded-l-full after:transition",
       )}
     >
