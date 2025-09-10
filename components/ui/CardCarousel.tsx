@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
 import clsx from "clsx";
+import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
+import Link from "next/link";
 import { useState } from "react";
 type Props = {
   title?: {
@@ -13,9 +13,10 @@ type Props = {
   };
   children: React.ReactNode;
   arrows?: boolean;
+  cardsLength: number;
 };
 
-function CardCarousel({ title, children, arrows = true }: Props) {
+function CardCarousel({ title, children, arrows = true, cardsLength }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -59,6 +60,8 @@ function CardCarousel({ title, children, arrows = true }: Props) {
     },
   });
 
+  console.log(instanceRef.current?.options.slides);
+
   return (
     <div className="flex flex-col">
       {title &&
@@ -86,8 +89,10 @@ function CardCarousel({ title, children, arrows = true }: Props) {
             <Arrow
               onClick={() => instanceRef.current?.next()}
               disabled={
+                instanceRef.current.track.details?.slides.length <=
+                  instanceRef.current.size ||
                 instanceRef.current.track.details?.slides.length - 1 ===
-                currentSlide
+                  currentSlide
               }
               side="right"
             />

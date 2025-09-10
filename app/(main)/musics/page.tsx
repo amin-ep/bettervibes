@@ -17,6 +17,7 @@ export default async function MusicPage() {
       <div className="flex flex-col gap-6 md:gap-8">
         {musicsGenres.map((genre) => (
           <CardCarousel
+            cardsLength={getFilteredMusics(genre, musics as Music[]).length}
             title={{
               enabled: true,
               linked: {
